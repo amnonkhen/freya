@@ -103,6 +103,8 @@
         btnReindex.onclick = function() {
             if (confirm('Are you sure to rebuild all solr indexes?')) {
                 var f = $.createElement('form');
+                document.body.appendChild(f);
+                document
                 f.method = 'POST';
                 f.action = 'service/solr/reindex';
                 f.submit();
