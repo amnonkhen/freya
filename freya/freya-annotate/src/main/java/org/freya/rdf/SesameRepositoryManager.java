@@ -100,10 +100,10 @@ public class SesameRepositoryManager implements RepositoryManager {
 			final TupleQuery tuple = connection.prepareTupleQuery(QueryLanguage.SPARQL, query);
 			tuple.setIncludeInferred(includeInferred);
 			return tuple.evaluate();
-
 		} catch (final Exception e) {
-			log.error("error executing query:{}", query, e);
-			throw new RuntimeException(e);
+			String msg = String.format("error executing query:%s", query);
+			log.error(msg, e);
+			throw new RuntimeException(msg, e);
 		}
 	}
 
@@ -186,8 +186,9 @@ public class SesameRepositoryManager implements RepositoryManager {
 
 			log.debug("Local repository initialised, ontologies not yet added");
 		} catch (Exception e) {
-			log.error("error loading local repository", e);
-			throw new RuntimeException(e);
+			String msg = "error loading local repository";
+			log.error(msg, e);
+			throw new RuntimeException(msg, e);
 		}
 
 		// final Graph graph = new GraphImpl();
